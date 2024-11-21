@@ -1,0 +1,9 @@
+const {
+    VITE_APP_VERSION,
+    VITE_RELEASES_URL,
+    VITE_DEVICE_POLL_RATE
+} = import.meta.env;
+
+export const APP_VERSION = VITE_APP_VERSION;
+export const RELEASES_URL = VITE_RELEASES_URL;
+export const DEVICE_POLL_RATE = VITE_DEVICE_POLL_RATE;
