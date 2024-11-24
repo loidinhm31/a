@@ -1,4 +1,4 @@
-import { execute } from './execute'
+import { execute } from "./execute";
 
 interface MirrorSettings {
     // Add settings interface based on your needs

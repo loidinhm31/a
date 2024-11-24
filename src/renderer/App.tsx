@@ -1,6 +1,6 @@
-import {ThemeProvider, CssBaseline, createTheme} from '@mui/material';
-import { createHashRouter, RouterProvider } from 'react-router-dom';
-import { DefaultLayout } from './layouts/DefaultLayout';
+import { createTheme, CssBaseline, ThemeProvider } from "@mui/material";
+import { createHashRouter, RouterProvider } from "react-router-dom";
+import { DefaultLayout } from "./layouts/DefaultLayout";
 import { Home } from "@/pages/Home";
 import { PackageManager } from "@/components/PackageManager";
 import { FileManager } from "@/pages/tools/FileManager";

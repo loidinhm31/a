@@ -1,6 +1,6 @@
-import { app } from 'electron';
-import path from 'path';
-import { fileURLToPath } from 'url';
+import { app } from "electron";
+import path from "path";
+import { fileURLToPath } from "url";
 
 function getAppRootPath(): string {
     // Production environment

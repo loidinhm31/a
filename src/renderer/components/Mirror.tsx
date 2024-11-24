@@ -1,14 +1,6 @@
-import { useState, useEffect } from 'react'
-import {
-    Box,
-    Typography,
-    Button,
-    Dialog,
-    DialogTitle,
-    DialogContent,
-    DialogActions
-} from '@mui/material'
-import { execute } from '../plugins/execute'
+import { useState } from "react";
+import { Box, Button, Dialog, DialogActions, DialogContent, DialogTitle, Typography } from "@mui/material";
+import { execute } from "../plugins/execute";
 
 export const Mirror = () => {
     const [running, setRunning] = useState(false)

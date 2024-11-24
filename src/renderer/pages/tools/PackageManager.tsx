@@ -1,30 +1,30 @@
-import {useEffect, useState} from 'react'
+import { useEffect, useState } from "react";
 import {
-    Box,
-    Button,
-    Card,
-    CardContent,
-    CardHeader,
-    Checkbox,
-    CircularProgress,
-    Dialog,
-    DialogActions,
-    DialogContent,
-    DialogTitle,
-    FormControlLabel,
-    List,
-    ListItemButton,
-    ListItemText,
-    Typography
-} from '@mui/material'
+  Box,
+  Button,
+  Card,
+  CardContent,
+  CardHeader,
+  Checkbox,
+  CircularProgress,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogTitle,
+  FormControlLabel,
+  List,
+  ListItemButton,
+  ListItemText,
+  Typography
+} from "@mui/material";
 import {
-    ArrowBack as ArrowBackIcon,
-    Delete as DeleteIcon,
-    PowerSettingsNew as PowerIcon,
-    Refresh as RefreshIcon
-} from '@mui/icons-material'
-import {useNavigate} from 'react-router-dom'
-import {execute} from '../../plugins/execute'
+  ArrowBack as ArrowBackIcon,
+  Delete as DeleteIcon,
+  PowerSettingsNew as PowerIcon,
+  Refresh as RefreshIcon
+} from "@mui/icons-material";
+import { useNavigate } from "react-router-dom";
+import { execute } from "../../plugins/execute";
 
 interface Action {
     name: string

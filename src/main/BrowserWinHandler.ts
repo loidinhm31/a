@@ -1,6 +1,6 @@
-import { BrowserWindow, app } from 'electron'
-import { EventEmitter } from 'events'
-import path from 'node:path'
+import { app, BrowserWindow } from "electron";
+import { EventEmitter } from "events";
+import path from "node:path";
 
 export default class BrowserWinHandler {
   private _eventEmitter: EventEmitter

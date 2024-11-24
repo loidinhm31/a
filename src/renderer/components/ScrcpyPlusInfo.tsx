@@ -1,10 +1,10 @@
-import { useState, useEffect } from 'react'
-import { Box, Alert, Button, Typography } from '@mui/material'
-import SettingsIcon from '@mui/icons-material/Settings'
-import { useNavigate } from 'react-router-dom'
-import discordIcon from '../assets/discord-icon.svg'
-import { execute } from '../plugins/execute'
-import { APP_VERSION } from "@/env.ts"
+import { useEffect, useState } from "react";
+import { Alert, Box, Button, Typography } from "@mui/material";
+import SettingsIcon from "@mui/icons-material/Settings";
+import { useNavigate } from "react-router-dom";
+import discordIcon from "../assets/discord-icon.svg";
+import { execute } from "../plugins/execute";
+import { APP_VERSION } from "@/env.ts";
 
 export const ScrcpyPlusInfo = () => {
     const navigate = useNavigate()

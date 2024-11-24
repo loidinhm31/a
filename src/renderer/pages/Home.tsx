@@ -1,11 +1,11 @@
-import {useState} from 'react'
-import {Box} from '@mui/material'
-import {UpdateNotice} from '../components/UpdateNotice'
-import {ScrcpyPlusInfo} from '../components/ScrcpyPlusInfo'
-import {Device} from '../components/Device'
-import {Tools} from '../components/Tools'
-import {Scrcpy} from '../components/Scrcpy'
-import {Mirror} from '../components/Mirror'
+import { useState } from "react";
+import { Box } from "@mui/material";
+import { UpdateNotice } from "../components/UpdateNotice";
+import { ScrcpyPlusInfo } from "../components/ScrcpyPlusInfo";
+import { Device } from "../components/Device";
+import { Tools } from "../components/Tools";
+import { Scrcpy } from "../components/Scrcpy";
+import { Mirror } from "../components/Mirror";
 
 export const Home = () => {
     const [deviceConnected, setDeviceConnected] = useState(false)

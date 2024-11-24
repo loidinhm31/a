@@ -1,14 +1,14 @@
-import { useEffect, useState } from 'react';
-import { Box, Drawer, List, ListItem, ListItemButton, ListItemIcon, ListItemText, useTheme } from '@mui/material';
-import { Outlet, useLocation, useNavigate } from 'react-router-dom';
+import { useEffect, useState } from "react";
+import { Box, Drawer, List, ListItem, ListItemButton, ListItemIcon, ListItemText, useTheme } from "@mui/material";
+import { Outlet, useLocation, useNavigate } from "react-router-dom";
 import {
-    Home as HomeIcon,
-    Settings as SettingsIcon,
-    Apps as AppsIcon,
-    Folder as FolderIcon,
-    Wifi as WifiIcon
-} from '@mui/icons-material';
-import icon from '../assets/icon.png';
+  Apps as AppsIcon,
+  Folder as FolderIcon,
+  Home as HomeIcon,
+  Settings as SettingsIcon,
+  Wifi as WifiIcon
+} from "@mui/icons-material";
+import icon from "../assets/icon.png";
 
 interface NavItem {
     title: string;

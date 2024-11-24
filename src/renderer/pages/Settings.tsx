@@ -1,13 +1,7 @@
-import { useState, useEffect } from 'react'
-import {
-    Box,
-    Typography,
-    Switch,
-    FormControlLabel,
-    IconButton
-} from '@mui/material'
-import ArrowBackIcon from '@mui/icons-material/ArrowBack'
-import { useNavigate } from 'react-router-dom'
+import { useEffect, useState } from "react";
+import { Box, FormControlLabel, IconButton, Switch, Typography } from "@mui/material";
+import ArrowBackIcon from "@mui/icons-material/ArrowBack";
+import { useNavigate } from "react-router-dom";
 
 interface Setting {
     key: string

@@ -1,8 +1,8 @@
-import { ipcMain } from 'electron';
-import { exec } from 'child_process';
-import { getScrcpyPath, getAdbPath } from '../utils/paths';
-import path from 'path';
-import fs from 'fs';
+import { ipcMain } from "electron";
+import { exec } from "child_process";
+import { getAdbPath, getScrcpyPath } from "../utils/paths";
+import path from "path";
+import fs from "fs";
 
 export function setupCommandExecutionHandler(): void {
     ipcMain.handle('execute-command', async (_, cmd: string) => {

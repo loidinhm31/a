@@ -1,24 +1,24 @@
-import { useState } from 'react'
+import { useState } from "react";
 import {
-    Box,
-    Card,
-    Typography,
-    Button,
-    Checkbox,
-    List,
-    ListItem,
-    ListItemButton,
-    ListItemText,
-    Dialog,
-    DialogTitle,
-    DialogContent,
-    DialogActions,
-    FormControlLabel
-} from '@mui/material'
-import ArrowBackIcon from '@mui/icons-material/ArrowBack'
-import { useNavigate } from 'react-router-dom'
-import { execute } from '../plugins/execute'
-import { CircularProgress } from '@mui/material'
+  Box,
+  Button,
+  Card,
+  Checkbox,
+  CircularProgress,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogTitle,
+  FormControlLabel,
+  List,
+  ListItem,
+  ListItemButton,
+  ListItemText,
+  Typography
+} from "@mui/material";
+import ArrowBackIcon from "@mui/icons-material/ArrowBack";
+import { useNavigate } from "react-router-dom";
+import { execute } from "../plugins/execute";
 
 interface Action {
     name: string

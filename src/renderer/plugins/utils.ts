@@ -1,4 +1,4 @@
-import { shell } from 'electron'
+import { shell } from "electron";
 
 interface WindowFeatures {
     autoHideMenuBar: boolean
