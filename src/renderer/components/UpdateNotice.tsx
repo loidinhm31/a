@@ -64,7 +64,7 @@ export const UpdateNotice = () => {
         >
             <Typography variant="h6">Update Available</Typography>
             <Typography color="text.secondary">
-                A new version of SCRCPY+ is ready to be downloaded
+                A new version of SCRCPY CONTROL is ready to be downloaded
             </Typography>
             <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
                 <Typography>{currentVersion}</Typography>

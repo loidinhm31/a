@@ -75,7 +75,7 @@ export const ScrcpyPlusInfo = () => {
                     severity="error"
                     sx={{ mb: 2, borderRadius: '1em' }}
                 >
-                    <Typography variant="h6">Error Starting SCRCPY+</Typography>
+                    <Typography variant="h6">Error Starting SCRCPY CONTROL</Typography>
                     <Typography color="text.secondary">
                         This error could be caused by <strong>{reason}</strong> not being properly installed or configured on your system.
                     </Typography>
@@ -87,7 +87,7 @@ export const ScrcpyPlusInfo = () => {
             )}
 
             <Typography variant="h4">
-                SCRCPY+ <Typography component="span" color="text.secondary">{version}</Typography>
+                SCRCPY CONTROL <Typography component="span" color="text.secondary">{version}</Typography>
             </Typography>
             <Typography variant="h6">
                 SCRCPY <Typography component="span" color="text.secondary">{scrcpyVersion || 'Not detected'}</Typography>

@@ -76,9 +76,9 @@ export const DefaultLayout = () => {
                         style={{
                             height: '24px',
                         }}
-                        alt="SCRCPY+"
+                        alt="SCRCPY CONTROL"
                     />
-                    <span style={{ fontSize: '1.2rem', color: 'white' }}>SCRCPY+</span>
+                    <span style={{ fontSize: '1.2rem', color: 'white' }}>SCRCPY CONTROL</span>
                 </Box>
 
                 {/* Navigation Items */}

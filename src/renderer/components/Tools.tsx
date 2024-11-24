@@ -57,7 +57,7 @@ export const Tools = () => {
             </Box>
 
             <Typography color="text.secondary">
-                All tools are written by me for SCRCPY+. All bug reports should go through the GitHub!
+                All bug reports should go through the GitHub!
             </Typography>
 
             <Box sx={{ display: 'flex', gap: 1, mt: 2 }}>
