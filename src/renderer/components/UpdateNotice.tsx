@@ -1,9 +1,9 @@
-import { useState, useEffect } from 'react'
-import { Alert, Box, Button, Typography } from '@mui/material'
-import DownloadIcon from '@mui/icons-material/Download'
-import ArrowRightIcon from '@mui/icons-material/ArrowRight'
-import axios from 'axios'
-import {APP_VERSION, RELEASES_URL} from "@/env.ts";
+import { useEffect, useState } from "react";
+import { Alert, Box, Button, Typography } from "@mui/material";
+import DownloadIcon from "@mui/icons-material/Download";
+import ArrowRightIcon from "@mui/icons-material/ArrowRight";
+import axios from "axios";
+import { APP_VERSION, RELEASES_URL } from "@/env.ts";
 
 interface Release {
     name: string
@@ -21,16 +21,20 @@ export const UpdateNotice = () => {
             try {
                 const { data } = await axios.get<Release[]>(RELEASES_URL)
                 setRepo(data)
-                setLatestVersion(data[0].name)
 
-                const latest = data[0].name.split(".")
                 const current = currentVersion.split(".")
 
-                // Fix the type error by ensuring i is used as a number
-                for (let i = 0; i < latest.length; i++) {
-                    if (parseInt(latest[i]) > parseInt(current[i])) {
-                        setUpdateAvailable(true)
-                        break
+                if (data.length > 0) {
+                    setLatestVersion(data[0].name)
+
+                    const latest = data[0].name.split(".")
+
+                    // Fix the type error by ensuring i is used as a number
+                    for (let i = 0; i < latest.length; i++) {
+                        if (parseInt(latest[i]) > parseInt(current[i])) {
+                            setUpdateAvailable(true)
+                            break
+                        }
                     }
                 }
             } catch (err) {

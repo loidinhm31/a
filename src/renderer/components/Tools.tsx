@@ -1,14 +1,20 @@
-import { Box, Button, Chip, Typography } from '@mui/material'
-import { useNavigate } from 'react-router-dom'
-import Icon from '@mui/material/Icon'
+import { Box, Button, Chip, Typography } from "@mui/material";
+import { useNavigate } from "react-router-dom";
+import { Apps as AppsIcon, Folder as FolderIcon } from "@mui/icons-material";
+
 
 interface Tool {
     title: string
-    icon: string
+    icon: keyof typeof iconMapping
     to: string
     beta?: boolean
     disabled?: boolean
 }
+
+const iconMapping = {
+    'package': AppsIcon,
+    'folder': FolderIcon,
+} as const
 
 export const Tools = () => {
     const navigate = useNavigate()
@@ -16,16 +22,22 @@ export const Tools = () => {
     const tools: Tool[] = [
         {
             title: "Package Manager",
-            icon: "mdi-package-variant",
+            icon: "package",  // Using the key from iconMapping
             to: "/tools/apps",
             beta: true
         },
         {
             title: "File Manager",
-            icon: "mdi-folder-open",
+            icon: "folder",   // Using the key from iconMapping
             to: "/tools/files"
         }
     ]
+
+    // Helper function to get icon component
+    const getIcon = (iconName: keyof typeof iconMapping) => {
+        const IconComponent = iconMapping[iconName]
+        return <IconComponent />
+    }
 
     return (
         <Box sx={{
@@ -53,7 +65,7 @@ export const Tools = () => {
                     <Button
                         key={index}
                         variant="outlined"
-                        startIcon={<Icon>{tool.icon}</Icon>}
+                        startIcon={getIcon(tool.icon)}
                         onClick={() => navigate(tool.to)}
                         disabled={tool.disabled}
                         className="primaryButton"

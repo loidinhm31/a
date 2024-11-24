@@ -1,21 +1,21 @@
-import { useState, useEffect } from 'react'
+import { useEffect, useState } from "react";
 import {
-    Box,
-    Typography,
-    Checkbox,
-    FormControlLabel,
-    Button,
-    Slider,
-    Accordion,
-    AccordionSummary,
-    AccordionDetails,
-    Dialog,
-    DialogTitle,
-    DialogContent,
-    DialogActions
-} from '@mui/material'
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
-import { execute } from '../plugins/execute'
+  Accordion,
+  AccordionDetails,
+  AccordionSummary,
+  Box,
+  Button,
+  Checkbox,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogTitle,
+  FormControlLabel,
+  Slider,
+  Typography
+} from "@mui/material";
+import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import { execute } from "../plugins/execute";
 
 interface ScrcpyArg {
     arg: string
@@ -107,8 +107,8 @@ export const Scrcpy = () => {
         }
 
         try {
-            await execute(`scrcpy --video-bit-rate ${bitrate}M ${flags}`)
             setRunning(true)
+            await execute(`scrcpy --video-bit-rate ${bitrate}M ${flags}`)
         } catch (err: any) {
             if (!err.toString().startsWith('WARN:')) {
                 console.error(err)
@@ -120,7 +120,7 @@ export const Scrcpy = () => {
 
         setTimeout(() => {
             setLoading(false)
-            setRunning(true)
+            setRunning(false)
         }, 1000)
     }
 
@@ -186,7 +186,7 @@ export const Scrcpy = () => {
                         </AccordionDetails>
                     </Accordion>
 
-                    <Box sx={{ mt: 2, display: 'flex', justifyContent: 'flex-end' }}>
+                    <Box sx={{ m: 2, display: 'flex', justifyContent: 'flex-end' }}>
                         <Button
                             variant="contained"
                             onClick={startScrcpy}

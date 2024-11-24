@@ -1,4 +1,4 @@
-import { contextBridge, ipcRenderer } from 'electron'
+import { contextBridge, ipcRenderer } from "electron";
 
 // Expose protected methods that allow the renderer process to use
 // the ipcRenderer without exposing the entire object
@@ -7,7 +7,12 @@ contextBridge.exposeInMainWorld(
     {
         ipcRenderer: {
             invoke: (channel: string, ...args: any[]) => {
-                const validChannels = ['execute-command'];
+                const validChannels = [
+                    'execute-command',
+                    'shell-command',
+                    'download-file',
+                    'delete-file'
+                ]
                 if (validChannels.includes(channel)) {
                     return ipcRenderer.invoke(channel, ...args);
                 }

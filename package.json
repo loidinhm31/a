@@ -1,10 +1,10 @@
 {
   "name": "scrcpy-control",
   "version": "0.0.1",
-  "description": "A GUI for scrcpy",
+  "description": "A GUI control for scrcpy",
   "main": "dist/main/index.js",
   "scripts": {
-    "dev": "electron-vite dev",
+    "dev": "electron-vite dev -w",
     "build": "electron-vite build",
     "preview": "electron-vite preview",
     "build:win": "npm run build && electron-builder --win --config",

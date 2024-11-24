@@ -1,12 +1,18 @@
-import {useState, useEffect} from 'react'
-import {Box, Typography, Button, CircularProgress, IconButton, Stack} from '@mui/material'
-import {Link, useNavigate} from 'react-router-dom'
-import {execute} from '../plugins/execute'
-import {Refresh} from '@mui/icons-material'
+import { useEffect, useState } from "react";
+import { Box, Button, CircularProgress, IconButton, Stack, SvgIcon, Typography } from "@mui/material";
+import { useNavigate } from "react-router-dom";
+import { execute } from "../plugins/execute";
+import {
+  Android as AndroidIcon,
+  Build as BuildIcon,
+  Devices as DevicesIcon,
+  Refresh,
+  Security as SecurityIcon
+} from "@mui/icons-material";
 
 interface DeviceInfo {
     title: string
-    icon: string
+    icon: typeof DevicesIcon  // This ensures correct typing for MUI icons
     command: string
     data: string | null
     subCommand?: string
@@ -17,11 +23,12 @@ interface DeviceInfo {
 export const Device = ({onDeviceChange}: { onDeviceChange: (connected: boolean) => void }) => {
     const navigate = useNavigate()
     const [device, setDevice] = useState(false)
+    const [deviceSerial, setDeviceSerial] = useState<string | null>(null)
     const [loading, setLoading] = useState(true)
     const [deviceInfo, setDeviceInfo] = useState<DeviceInfo[]>([
         {
             title: "Model",
-            icon: "mdi-devices",
+            icon: DevicesIcon,
             command: "adb shell getprop ro.product.model",
             data: null,
             subCommand: "adb shell getprop ro.product.device",
@@ -29,7 +36,7 @@ export const Device = ({onDeviceChange}: { onDeviceChange: (connected: boolean) 
         },
         {
             title: "Android Version",
-            icon: "mdi-android",
+            icon: AndroidIcon,
             command: "adb shell getprop ro.build.version.release",
             data: null,
             subCommand: "adb shell getprop ro.build.version.sdk",
@@ -38,17 +45,33 @@ export const Device = ({onDeviceChange}: { onDeviceChange: (connected: boolean) 
         },
         {
             title: "System Build Number",
-            icon: "mdi-wrench",
+            icon: BuildIcon,
             command: "adb shell getprop ro.build.id",
             data: null,
         },
         {
             title: "Security Patch",
-            icon: "mdi-security",
+            icon: SecurityIcon,
             command: "adb shell getprop ro.build.version.security_patch",
             data: null,
         },
     ])
+
+    const parseDevicesList = (output: string) => {
+        const lines = output.split('\n').filter(line => line.trim())
+        for (const line of lines) {
+            // Skip empty lines and "List of devices attached"
+            if (!line || line.includes('List of devices attached')) continue
+
+            // Check if device is properly connected (not offline)
+            if (line.includes('device') && !line.includes('offline')) {
+                // Extract the device serial/IP - it's the first part before any whitespace
+                const serial = line.split(/\s+/)[0]
+                return { connected: true, serial }
+            }
+        }
+        return { connected: false, serial: null }
+    }
 
     const checkDevice = async () => {
         try {
@@ -60,12 +83,14 @@ export const Device = ({onDeviceChange}: { onDeviceChange: (connected: boolean) 
             }
 
             const data = await execute("adb devices -l")
-            const isConnected = data.includes("product:")
-            setDevice(isConnected)
-            onDeviceChange(isConnected)
+            const { connected, serial } = parseDevicesList(data)
 
-            if (isConnected && !device) {
-                refreshList()
+            setDevice(connected)
+            setDeviceSerial(serial)
+            onDeviceChange(connected)
+
+            if (connected && serial) {
+                refreshList(serial)
             } else {
                 setLoading(false)
             }
@@ -77,16 +102,19 @@ export const Device = ({onDeviceChange}: { onDeviceChange: (connected: boolean) 
         }
     }
 
-    const refreshList = async () => {
+    const refreshList = async (serial: string) => {
         setLoading(true)
         try {
             const updatedInfo = await Promise.all(
                 deviceInfo.map(async (item) => {
-                    const data = await execute(item.command)
+                    // Modify commands to target specific device
+                    const deviceCommand = `adb -s ${serial} ${item.command.replace('adb ', '')}`
+                    const data = await execute(deviceCommand)
                     const newItem = {...item, data: data.trim()}
 
                     if (item.subCommand) {
-                        const subData = await execute(item.subCommand)
+                        const deviceSubCommand = `adb -s ${serial} ${item.subCommand.replace('adb ', '')}`
+                        const subData = await execute(deviceSubCommand)
                         newItem.subData = subData.trim()
                     }
 
@@ -105,7 +133,6 @@ export const Device = ({onDeviceChange}: { onDeviceChange: (connected: boolean) 
     }
 
     useEffect(() => {
-        // Initial check when component mounts
         checkDevice()
     }, [])
 
@@ -157,18 +184,25 @@ export const Device = ({onDeviceChange}: { onDeviceChange: (connected: boolean) 
                                     my: 1,
                                     p: 1.5,
                                     borderRadius: 1,
+                                    display: 'flex',
+                                    alignItems: 'center',
                                     '&:hover': {
                                         bgcolor: 'action.hover'
                                     }
                                 }}
                             >
-                                <Typography variant="subtitle1">
-                                    {item.title}
-                                </Typography>
-                                <Typography color="text.secondary">
-                                    {item.data}
-                                    {item.subData && ` (${item.subDataPrepend || ''}${item.subData})`}
-                                </Typography>
+                                <Box sx={{ mr: 1, display: 'flex', alignItems: 'center' }}>
+                                    <SvgIcon component={item.icon} sx={{ fontSize: 20 }} />
+                                </Box>
+                                <Box>
+                                    <Typography variant="subtitle1">
+                                        {item.title}
+                                    </Typography>
+                                    <Typography color="text.secondary">
+                                        {item.data}
+                                        {item.subData && ` (${item.subDataPrepend || ''}${item.subData})`}
+                                    </Typography>
+                                </Box>
                             </Box>
                         ))
                     )}
